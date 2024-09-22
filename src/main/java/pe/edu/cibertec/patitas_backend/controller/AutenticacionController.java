@@ -24,7 +24,7 @@ public class AutenticacionController {
         try {
             String  [] datosUsuarios = autenticacionService.validarUsuario(loginRequestDTO);
               if (datosUsuarios ==null){
-                  return new LoginResponseDTO("00", "Error:Usuario no encontrado", "", "");
+                  return new LoginResponseDTO("01", "Error:Usuario no encontrado", "", "");
 
               }
               return  new LoginResponseDTO("00","",datosUsuarios[0],datosUsuarios[1]);
