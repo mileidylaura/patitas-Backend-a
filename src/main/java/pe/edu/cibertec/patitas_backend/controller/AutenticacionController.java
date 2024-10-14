@@ -5,6 +5,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import pe.edu.cibertec.patitas_backend.dto.LoginRequestDTO;
 import pe.edu.cibertec.patitas_backend.dto.LoginResponseDTO;
+import pe.edu.cibertec.patitas_backend.dto.SignOutRequestDTO;
+import pe.edu.cibertec.patitas_backend.dto.SignOutResponseDTO;
 import pe.edu.cibertec.patitas_backend.service.AutenticacionService;
 
 import java.io.IOException;
@@ -41,5 +43,21 @@ public class AutenticacionController {
 
         }
 
+    }
+    @PostMapping("/signout")
+    public SignOutResponseDTO CierreSesion(@RequestBody SignOutRequestDTO signOutRequestDTO){
+        try {
+            String codigo = autenticacionService.CierreSesion(signOutRequestDTO);
+
+            if (codigo == null){
+                return new SignOutResponseDTO("99","Error : No se pudo guardar el registro");
+            }
+
+            return new SignOutResponseDTO(codigo, "Se Guardo el registro de cierre de sesion");
+        }
+        catch (Exception e ) {
+            System.out.println(e.getMessage().toString());
+            return new SignOutResponseDTO("99", "Error");
+        }
     }
 }
