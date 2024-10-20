@@ -47,6 +47,9 @@ public class AutenticacionController {
     @PostMapping("/signout")
     public SignOutResponseDTO CierreSesion(@RequestBody SignOutRequestDTO signOutRequestDTO){
         try {
+
+            Thread.sleep(15000);
+
             String codigo = autenticacionService.CierreSesion(signOutRequestDTO);
 
             if (codigo == null){
